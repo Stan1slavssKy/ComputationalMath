@@ -34,9 +34,9 @@ def NewtonMethod(startX, startY, nmbIterations, epsilon):
         tempY = y
         x = x + F1(x, y)
         y = y + F2(x, y)
-        if((tempX - x < epsilon) and (tempY - y < epsilon)):
-            print(i)
-            return (x, y)
+        # if((tempX - x < epsilon) and (tempY - y < epsilon)):
+        #     print(i)
+        #     return (x, y)
 
     return (x, y)
 
@@ -45,7 +45,7 @@ def NewtonMethod(startX, startY, nmbIterations, epsilon):
 def main():
     result = simpleIterationMethod(np.pi, 500)
     print(result)
-    result = NewtonMethod(np.pi / 2, -np.pi / 2, 500, 1e-3)
+    result = NewtonMethod(0.3, -0.3, 50000, 1e-15)
     print(result)
     return
 
