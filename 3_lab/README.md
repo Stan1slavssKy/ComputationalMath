@@ -18,6 +18,7 @@ $$\left|\varphi'(x)\right| = \left|-\frac{2x}{\sqrt{400 - x^4}}\right| < 1$$
 
 ## Задание 2
 Вычислить с точностью $\varepsilon = 10^{-3}$ координаты точек пересечения нелинейного уравнения методом Ньютона.
+
 $$\begin{equation*} 
     \begin{cases}
         sin(x+1) - y = 1.2\\
@@ -26,6 +27,7 @@ $$\begin{equation*}
 \end{equation*}$$
 
 Выберем область локализации:
+
 $$G = \begin{equation*} 
     \begin{cases}
         0.3  \leq x \leq 0.7\\
@@ -33,7 +35,9 @@ $$G = \begin{equation*}
     \end{cases}
 \end{equation*}$$
 
-Метод Нютона: $\vec{x}_{k+1} = \vec{x}_k - J^{-1}\vec{F}(\vec{x}_{k})$. То есть для начала нужно найти якобиан исходного уравнения:
+Метод Нютона: 
+$\vec{x}_{k+1} = \vec{x}_k - J^{-1}\vec{F}(\vec{x}_{k}$. То есть для начала нужно найти якобиан исходного уравнения:
+
 $$\begin{equation*} 
     \begin{cases}
         F_1(x) = sin(x+1) - y - 1.2\\
@@ -56,6 +60,7 @@ J = \left(
 \end{equation*}$$
 
 Таким образом получил результат:
+
 $$\begin{equation*}
     \left(
     \begin{array}{cccc}
@@ -70,6 +75,6 @@ $$\begin{equation*}
         \right)
 \end{equation*}$$
 
-Сравнил результат с desmos, убедился, что получен правильный результат.Метод сошелся с точностью $\varepsilon = 10^{-16}$ за 2 итерации.
+Сравнил результат с desmos, убедился, что получен правильный результат. Метод сошелся с точностью $\varepsilon = 10^{-16}$ за 2 итерации.
 
 <img src = "./graph2.png" width = "300" height = "300" align = "center"/>
