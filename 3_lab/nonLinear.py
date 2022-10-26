@@ -1,52 +1,57 @@
 import numpy as np
 
-
 #=============================================================================
 
 def iterationFunction(x):
     return np.pi - np.arcsin(x**2 / 20.0)
 
-def simpleIterationMethod(startPoint, nmbIterations):
+def simpleIterationMethod(startPoint, nmbIterations, epsilon):
     result = startPoint
     for i in range(0, nmbIterations):
         temp = result
         result = iterationFunction(result)
-        if (np.abs(result - temp) < 1e-16):
-            return result
+        if (np.abs(result - temp) < epsilon):
+            return result, i
 
     return result
 
 #=============================================================================
 
-def F1(x, y):
-    return (-np.sin(y) * (np.sin(x + 1) - y - 1.2) - 2 * (2 * x  + np.cos(y) - 2)) / (-np.sin(y) * np.cos(x + 1) + 2)
+def F(vec):
+    F = np.array([[0.0], [0.0]])
+    F[0] = np.sin(vec[0] + 1.0) - vec[1] - 1.2
+    F[1] = 2 * vec[0] + np.cos(vec[1]) - 2.0
+    return F
 
-def F2(x, y):
-    return (1 * (np.sin(x + 1) - y - 1.2) + np.cos(x + 1) * (2 * x + np.cos(y) - 2)) / (-np.sin(y) * np.cos(x + 1) + 2) 
+def Jacobian(vec):
+    J = np.identity(2)
+    J[0, 0] = np.cos(vec[0] + 1.0)
+    J[0, 1] = -1.0
+    J[1, 0] = 2.0
+    J[1, 1] = -np.sin(vec[1])
+    return J
 
+def normVec3(vec):
+    return float(np.sqrt(np.dot(vec.transpose(), vec)))
 
-def NewtonMethod(startX, startY, nmbIterations, epsilon):
-    x = startX
-    y = startY
+def NewtonMethod(startPoint, F, J, epsilon, nmbIterations):
+    result = startPoint
 
     for i in range(0, nmbIterations):
-        tempX = x
-        tempY = y
-        x = x + F1(x, y)
-        y = y + F2(x, y)
-        # if((tempX - x < epsilon) and (tempY - y < epsilon)):
-        #     print(i)
-        #     return (x, y)
+        temp   = result
+        result = result - np.matmul(np.linalg.inv(Jacobian(result)), F(result))
+        if(normVec3(result - temp) < epsilon):
+            return result, i
 
-    return (x, y)
+    return result
 
 #=============================================================================
 
 def main():
-    result = simpleIterationMethod(np.pi, 500)
-    print(result)
-    result = NewtonMethod(0.3, -0.3, 50000, 1e-15)
-    print(result)
+    result, i = simpleIterationMethod(np.pi, 500, 1e-16)
+    print(result, ' ', i)
+    result, i = NewtonMethod(np.array([[0.3], [-0.5]]), F, Jacobian, 1e-3, 500)
+    print(result, ' ', i)
     return
 
 #=============================================================================
