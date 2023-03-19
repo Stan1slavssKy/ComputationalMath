@@ -54,10 +54,14 @@ $$ k_4 = f(t_n + h, y_n + hk_3) $$
 
 Для разных $e$ и $h$ получил графики решений:
 
-<img src = "./images/MRK_solve_0.02.png" width = "450" height = "450" align = "center"/>
+<p align="center">
+  <img src="./images/MRK_solve_0.02.png" width="450" height = "450">
+  <img src="./images/MRK_solve_10.png" width="450" height = "450">
+</p>
 
-<img src = "./images/MRK_solve_10.png" width = "450" height = "450" align = "center"/>
+<p align="center">
+  <img src="./images/MRK_solve_50.png" width="450" height = "450">
+  <img src="./images/MRK_solve_90.png" width="450" height = "450">
+</p>
 
-<img src = "./images/MRK_solve_50.png" width = "450" height = "450" align = "center"/>
-
-<img src = "./images/MRK_solve_90.png" width = "450" height = "450" align = "center"/>
+### Метод Адамса
