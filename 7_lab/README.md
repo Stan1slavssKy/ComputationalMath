@@ -11,7 +11,7 @@ $$\begin{equation*}
     \end{cases}
 \end{equation*}$$
 
-Параметры задачи таковы, что $\varepsilon \leq 0.01$, $~0 \leq x_0 \leq 40$, $~0 \leq y_0 \leq 40$, $~\alpha_{10} \ll 1$, $~\alpha_{20} = 10$, $~T_k = 2000$.
+Параметры задачи таковы, что $\varepsilon \leq 0.01,~ 0 \leq x_0 \leq 40,~ 0 \leq y_0 \leq 40,~ \alpha_{10} \ll 1,~ \alpha_{20} = 10,~ T_k = 2000$.
 
 ### Трехстадийный метод Розенброка 3 порядка
 
