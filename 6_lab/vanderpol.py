@@ -18,35 +18,65 @@ def method_RK_4_order(e, start_vector, h, num_steps, t_end):
         result[i + 1] = result[i] + h * (k_1 + 2 * k_2 + 2 * k_3 + k_4) / 6
     return result
 
-def draw_result_of_MRK(result, t):
+def draw_result_of_MRK(result, t, e, h):
     plt.figure(figsize = (6, 6))
     x, z = result.T
 
     ax = plt.axes(projection = '3d')
     
     # Data for a three-dimensional line
-    ax.plot3D(x, z, t, 'gray')
-    # Data for three-dimensional scattered points
-    t_data = np.linspace(0, 100, 100);
-    ax.scatter3D(x, z, t, c = t, cmap='Greens');
+    ax.plot3D(x, z, t, 'green')
     
-    ax.set_title('Result for e = 80');
+    ax.set_title('Result for e = %.2f, h = %.4f' % (e, h))
+    ax.set_xlabel('x')
+    ax.set_ylabel('z')
+    ax.set_zlabel('t')
+    
+    safe_name = 'images/MRK_solve_' + str(e) + '.png'
+    plt.savefig(safe_name)
+    
+    return
 
-    plt.savefig('images/solve_80.png')
+def solve_with_MRK():
+    t_beg = 0 # 0 < t <= 100
+    t_end = 100
+    
+    e = 0.02
+    h = 0.01
+    start_vector = np.array([2, 0]) # x(0) = 2, z(0) = 0
+    num_steps = int((t_end - t_beg) / h) + 1
+    t = np.linspace(t_beg, t_end, num_steps)
+    result = method_RK_4_order(e, start_vector, h, num_steps, t)
+    draw_result_of_MRK(result, t, e, h)
+    
+    e = 10
+    h = 0.01
+    start_vector = np.array([2, 0]) # x(0) = 2, z(0) = 0
+    num_steps = int((t_end - t_beg) / h) + 1
+    t = np.linspace(t_beg, t_end, num_steps)
+    result = method_RK_4_order(e, start_vector, h, num_steps, t)
+    draw_result_of_MRK(result, t, e, h)
+    
+    e = 50
+    h = 0.001
+    start_vector = np.array([2, 0]) # x(0) = 2, z(0) = 0
+    num_steps = int((t_end - t_beg) / h) + 1
+    t = np.linspace(t_beg, t_end, num_steps)
+    result = method_RK_4_order(e, start_vector, h, num_steps, t)
+    draw_result_of_MRK(result, t, e, h)
+    
+    e = 90
+    h = 0.0001
+    start_vector = np.array([2, 0]) # x(0) = 2, z(0) = 0
+    num_steps = int((t_end - t_beg) / h) + 1
+    t = np.linspace(t_beg, t_end, num_steps)
+    result = method_RK_4_order(e, start_vector, h, num_steps, t)
+    draw_result_of_MRK(result, t, e, h)
     
     return
 
 def main():
-    e = 80
-    start_vector = np.array([2, 0])
-    h = 0.01
-    t_beg = 0 # 0 < t <= 100
-    t_end = 100
-    num_steps = int((t_end - t_beg) / h) + 1
-    t = np.linspace(t_beg, t_end, num_steps)
-    result = method_RK_4_order(e, start_vector, h, num_steps, t)
-    draw_result_of_MRK(result, t)
-
+    solve_with_MRK()
     return
 
 if __name__ == "__main__":

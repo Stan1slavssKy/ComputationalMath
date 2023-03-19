@@ -14,9 +14,10 @@ $$\begin{equation*}
 \end{equation*}$$
 
 $$ x(0) = 2, z(0) = 0, 0 < t \leq 100 $$
+
 в зависимости от изменения параметра $e (0,01 < e < 100)$. Использовать:
-* Явный метод Рунге-Кутты $ \geq 3 $ порядка 
-* Явный многошаговый метод Адамса $ \geq 3 $ порядка
+* Явный метод Рунге-Кутты $\geq 3$ порядка 
+* Явный многошаговый метод Адамса $\geq 3$ порядка
 
 ### Явный метод Рунге-Кутты 4 порядка
 $$ \vec{y}_{n+1} = \vec{y}_n + h \sum\limits_{i=1}^{s}{b_i \vec{k_i}} $$
@@ -46,3 +47,13 @@ $$ k_1 = f(t_n, y_n) $$
 $$ k_2 = f\left(t_n + \frac{h}{2},~ y_n + \frac{h}{2}k_1\right) $$
 $$ k_3 = f\left(t_n + \frac{h}{2},~ y_n + \frac{h}{2}k_2\right) $$
 $$ k_4 = f(t_n + h, y_n + hk_3) $$
+
+Для разных $e$ и $h$ получил графики решений:
+
+<img src = "./images/MRK_solve_0.02.png" width = "450" height = "450" align = "center"/>
+
+<img src = "./images/MRK_solve_10.png" width = "450" height = "450" align = "center"/>
+
+<img src = "./images/MRK_solve_50.png" width = "450" height = "450" align = "center"/>
+
+<img src = "./images/MRK_solve_90.png" width = "450" height = "450" align = "center"/>
