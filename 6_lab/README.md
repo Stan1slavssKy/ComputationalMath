@@ -64,4 +64,18 @@ $$ k_4 = f(t_n + h, y_n + hk_3) $$
   <img src="./images/MRK_solve_90.png" width="450" height = "450">
 </p>
 
-### Метод Адамса
+### Явный Метод Адамса 3 порядка
+
+$$ y_{n+3} = y_{n+2} + h\left(\frac{23}{12}f(t_{n+2},~ y_{n+2}) - \frac{4}{3}f(t_{n+1},~ y_{n+1}) + \frac{5}{12}f(t_{n},~ y_{n})\right) $$
+
+Для разных $e$ и $h$ получил графики решений:
+
+<p align="center">
+  <img src="./images/Adams_solve_0.02.png" width="450" height = "450">
+  <img src="./images/Adams_solve_10.png" width="450" height = "450">
+</p>
+
+<p align="center">
+  <img src="./images/Adams_solve_50.png" width="450" height = "450">
+  <img src="./images/Adams_solve_90.png" width="450" height = "450">
+</p>
