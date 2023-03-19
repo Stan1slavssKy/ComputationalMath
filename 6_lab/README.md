@@ -43,9 +43,13 @@ $$ k_i = f(x_n + c_i h, y_n + h \sum\limits_{j=1}^{s_i}{a_{ij}f_j}),~ i = \overl
 Тогда получаем следующие формулы:
 
 $$ y_{n + 1} = y_n + \frac{k_1 + 2k_2 + 2k_3 + k_4}{6}h $$
+
 $$ k_1 = f(t_n, y_n) $$
+
 $$ k_2 = f\left(t_n + \frac{h}{2},~ y_n + \frac{h}{2}k_1\right) $$
+
 $$ k_3 = f\left(t_n + \frac{h}{2},~ y_n + \frac{h}{2}k_2\right) $$
+
 $$ k_4 = f(t_n + h, y_n + hk_3) $$
 
 Для разных $e$ и $h$ получил графики решений:
