@@ -95,7 +95,7 @@ def draw_Rosenbrok_result(result, t):
     return
 
 def main():
-    # print_jacobian()
+    print_jacobian()
     h = 0.01
     num_steps = int(T_k / h) + 1
     t = np.linspace(0, T_k, num_steps)

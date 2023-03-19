@@ -22,3 +22,8 @@ $$ D_nk_1 = hf(y_n),~ D_nk_2 = hf(y_n + \beta_{21}k_1),~ D_nk_3 = f(y_n + \beta_
 $$ D_n = E + ahI $$
 
 $E -$единичная матрица, $~I -$матрица Якоби.
+
+Возьмем значения $\varepsilon  = 0.0001, x_0 = 0, y_0  = 1, a_{10} = 0.05,a_{20} = 10$. Итоговый результат:
+<p align="center">
+    <img src = "./images/solve.png" width = "550" height = "350" align = "center"/>
+</p>
