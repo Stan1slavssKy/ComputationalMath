@@ -25,5 +25,5 @@ $E -$единичная матрица, $~I -$матрица Якоби.
 
 Возьмем значения $\varepsilon  = 0.0001, x_0 = 0, y_0  = 1, a_{10} = 0.05,a_{20} = 10$. Итоговый результат:
 <p align="center">
-    <img src = "./images/solve.png" width = "550" height = "350" align = "center"/>
+    <img src = "./images/solve.png" width = "900" height = "420" align = "center"/>
 </p>
