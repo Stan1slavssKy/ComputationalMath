@@ -37,7 +37,6 @@ def print_jacobian():
     print(jacobian)
     return jacobian
 
-
 def jacobian(vec):
     x, y, a_1, a_2 = vec[0], vec[1], vec[2], vec[3]
 
@@ -74,35 +73,82 @@ def method_Rosenbrok_3_order(start_vector, h, num_steps):
         result[i + 1] = result[i] + p_1 * k_1 + p_2 * k_2 + p_3 * k_3
     return result
 
-def draw_Rosenbrok_result(result, t):
+def draw_Rosenbrok_result(result, t, modified):
     result = result.T
-    plt.figure(figsize=[16, 8])
-
-    labels = ["x(t)", "y(t)", "a1(t)", "a2(t)"]
     
-    for i in range(len(result)):
-        plt.plot(t, result[i], label=labels[i])
-
-    plt.title('Решения для экогенетической модели')
-
+    plt.figure(figsize=[16, 10])
     plt.xlabel("t")
     plt.ylabel("x")
     plt.minorticks_on()
     plt.tight_layout()
-    plt.legend(loc = 'best', fontsize = 12)
-    plt.savefig('images/solve.png')
     
+    labels = ["x(t)", "y(t)", "a_1(t)", "a_2(t)"]
+    
+    for i in range(len(result)):
+        plt.plot(t, result[i], label=labels[i])
+
+    plt.legend(loc = 'best', fontsize = 12)
+    
+    if(modified):
+        plt.title('Решения для модифицированной экогенетической модели')
+        plt.savefig('images/modified_solve.png')
+    else:
+        plt.title('Решения для экогенетической модели')
+        plt.savefig('images/solve.png')
+        
     return
 
+#=====================================================================================
+
+def print_jacobian_modified():
+    x = sp.Symbol('x')
+    y = sp.Symbol('y')
+    a_1 = sp.Symbol('a_1')
+    a_2 = sp.Symbol('a_2')
+    system_matrix = Matrix([x * (2 * a_1 - 0.5 * x - y * (a_1 ** 3) * (a_2 ** (-3))), 
+                           y * (2 * a_2 - 0.5 * y - x * (a_2 ** 3) * (a_1 ** (-3))), 
+                           eps * (2 - 3 * y * a_1 ** (2) * a_2 ** (-3)), 
+                           eps * (2 - 3 * x * a_2 ** (2) * a_1 ** (-3))])
+    variables = Matrix([x, y, a_1, a_2])
+    jacobian = system_matrix.jacobian(variables)
+    print(jacobian)
+    return jacobian
+
+def func_modified(vec):
+    x, y, a_1, a_2 = vec[0], vec[1], vec[2], vec[3]
+
+    return np.array([x * (2 * a_1 - 0.5 * x - y * (a_1 ** 3) * (a_2 ** (-3))), 
+                     y * (2 * a_2 - 0.5 * y - x * (a_2 ** 3) * (a_1 ** (-3))),
+                     eps * (2 - 3 * y * a_1 ** (2) * a_2 ** (-3)),
+                     eps * (2 - 3 * x * a_2 ** (2) * a_1 ** (-3))])
+
+def jacobian_modified(vec):
+    x, y, a_1, a_2 = vec[0], vec[1], vec[2], vec[3]
+
+    return np.array([[-a_1 ** 3 * y * a_2 ** (-3) + 2 * a_1 - x, -a_1 ** 3 * x * a_2 ** (-3), x * (-3 * (a_1 ** 2) * y * a_2 ** (-3) + 2), 3 * a_1 ** 3 * x * y * a_2 ** (-4)], 
+                     [-a_2 ** 3 * y * a_1 ** (-3), -a_2 ** 3 * x * (a_1 ** (-3)) + 2*a_2 - y, 3 * (a_2 ** 3) * x * y * a_1 ** (-4), y * (-3 * a_2 ** 2 * x * a_1 ** (-3) + 2)], 
+                     [0, -0.03 * (a_1 ** 2) * a_2 ** (-3), -0.06 * y * a_1 * a_2 ** (-3), 0.09 * (a_1 ** 2) * y * a_2 ** (-4)], 
+                     [-0.03 * (a_2 ** 2) * a_1 ** (-3), 0, 0.09 * (a_2 ** 2) * x * a_1 ** (-4), -0.06 * x * a_2 * a_1 ** (-3)]])
+
+def D_n_modified(vec, h):
+    return np.eye(4) + a * h * jacobian_modified(vec)
+
+#=====================================================================================
+
 def main():
-    print_jacobian()
+    # print_jacobian()
     h = 0.01
     num_steps = int(T_k / h) + 1
     t = np.linspace(0, T_k, num_steps)
     
     start_vector = np.array([x_0, y_0, a_10, a_20])
     result = method_Rosenbrok_3_order(start_vector, h, num_steps)
-    draw_Rosenbrok_result(result, t)
+    draw_Rosenbrok_result(result, t, False)
+    
+    # print_jacobian_modified()
+    result = method_Rosenbrok_3_order(start_vector, h, num_steps)
+    draw_Rosenbrok_result(result, t, True)
+    
     return
 
 if __name__ == "__main__":

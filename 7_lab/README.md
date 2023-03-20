@@ -27,3 +27,18 @@ $E -$единичная матрица, $~I -$матрица Якоби.
 <p align="center">
     <img src = "./images/solve.png" width = "900" height = "420" align = "center"/>
 </p>
+
+Для модифицированного уравнения:
+
+$$\begin{equation*} 
+    \begin{cases}
+        \dot{x} = x(2\alpha_1 - 0.5x - \alpha_1^3 \alpha_2^{-3}y), \\
+        \dot{y} = y(2\alpha_2 - \alpha_1^{-3}\alpha_2^3x - 0.5y),\\
+        \dot{\alpha_1} = \varepsilon(2 - 2\alpha_1^2 \alpha_2^{-3}y), \\
+        \dot{\alpha_2} = \varepsilon(2 - 2\alpha_1^{-3}\alpha_2^2x)
+    \end{cases}
+\end{equation*}$$
+
+<p align="center">
+    <img src = "./images/modified_solve.png" width = "900" height = "420" align = "center"/>
+</p>
