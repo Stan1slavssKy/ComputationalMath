@@ -33,7 +33,8 @@ def draw_result_of_MRK(result, x):
     plt.ylabel('y')
     plt.xlabel('x')
     plt.grid()
-
+    plt.title('Решение краевой задачи')
+    
     safe_name = 'images/Shooting.png'
     plt.savefig(safe_name)
     
