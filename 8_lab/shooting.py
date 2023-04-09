@@ -12,17 +12,17 @@ def method_RK_4_order(x, start_vector, h, num_steps):
     result = np.zeros((num_steps, np.shape(start_vector)[0]))
     result[0] = start_vector
     integral_summ = 0
-    
+
     for i in range(0, num_steps - 1):
         k_1 = func(x[i], result[i])
-        k_2 = func(x[i], result[i] + 0.5 * h * k_1)
-        k_3 = func(x[i], result[i] + 0.5 * h * k_2)
-        k_4 = func(x[i], result[i] + h * k_3)
+        k_2 = func(x[i] + h / 2, result[i] + 0.5 * h * k_1)
+        k_3 = func(x[i] + h / 2, result[i] + 0.5 * h * k_2)
+        k_4 = func(x[i] + h, result[i] + h * k_3)
         result[i + 1] = result[i] + h * (k_1 + 2 * k_2 + 2 * k_3 + k_4) / 6
 
-        if(i > 0):
-            integral_summ += (result[i][0] - result[i - 1][0]) * h
-    
+        if(i != 0):
+            integral_summ += (result[i][0] + result[i - 1][0]) / 2 * h
+          
     return integral_summ, result
 
 def draw_result_of_MRK(result, x):
@@ -41,26 +41,28 @@ def draw_result_of_MRK(result, x):
 
 #==============================================================================
 
-
 def main():
     x_0 = 0
     y_0 = 0
-    z_0 = 100
+    z_0 = 1.5
     x_beg = 0
     x_end = 1
-    h = 0.01
+    h = 0.001
     
     num_steps = int((x_end - x_beg) / h) + 1
     x = np.linspace(x_beg, x_end, num_steps)
-        
+ 
     integral_sum = 0
     result = np.empty((0), float)
-    epsilon = 1e-6
+    epsilon = 1e-4
     
-    while(abs(integral_sum - 1) > epsilon):
+    while(True):
         start_vector = np.array([y_0, z_0])
         integral_sum, result = method_RK_4_order(x, start_vector, h, num_steps)
-        z_0 -= 100 * epsilon
+        z_0 += 10 * epsilon
+        if(abs(integral_sum - 1.0) < epsilon):
+            print(integral_sum)
+            break
     
     print(z_0)
     draw_result_of_MRK(result, x)
