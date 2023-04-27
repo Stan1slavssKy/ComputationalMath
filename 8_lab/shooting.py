@@ -63,6 +63,7 @@ def main():
         z_0 += 10 * epsilon
         if(abs(integral_sum - 1.0) < epsilon):
             print(integral_sum)
+            print(result)
             break
     
     print(z_0)
