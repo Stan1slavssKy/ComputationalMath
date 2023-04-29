@@ -75,12 +75,12 @@ $$\begin{equation*}
 		
 Действуя по аналогии получаем:
 
-$$\begin{equation*}
+$$\begin{equation}
     \begin{cases}
         u_{l - 1} = \alpha_{l - 1} u_l + \beta_{l - 1},~ l = \overline{1,l_\alpha - 1} \\
         u_{l + 1} = \alpha_{l + 1} u_l + \beta_{l + 1},~ l = \overline{L - 1,l_\beta + 1}
     \end{cases}
-\end{equation*}$$
+\end{equation}$$
 
 Прогоночные коэффициенты определяются следующим образом:
 
@@ -103,7 +103,7 @@ $$\begin{equation*}
     \end{cases}
 \end{equation*}$$
 
-Решим ее получаем
+Решив ее получаем
 
 $$\begin{equation*}
     \begin{cases}
@@ -112,3 +112,13 @@ $$\begin{equation*}
         u_{l_\beta + 1} = \alpha_{l_\beta + 1} u_{l_\beta} + \beta_{l_\beta + 1}.
     \end{cases}
 \end{equation*}$$
+
+Это прямая прогонка, дальше используя (1) проводим обратную прогонку.
+
+
+### Результат
+В итоге получилась следующая функция:
+
+<p align="center">
+    <img src = "./images/boundary_value_problem.png" width = "700" height = "500" align = "center"/>
+</p>
